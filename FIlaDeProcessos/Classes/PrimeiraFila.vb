@@ -1,5 +1,4 @@
 ﻿Public Class PrimeiraFila
-
     Public Shared Sub primeiro(listaExibicao As ListView, fila As List(Of Processo), quantum As Integer, numerador As Integer)
 
         Dim process = (From currentProcess In fila).FirstOrDefault()
