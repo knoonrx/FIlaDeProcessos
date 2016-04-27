@@ -1,4 +1,5 @@
 ﻿Public Class Processo
+
     Public id 'ID
     Public tempo As Integer 'Tamanho (burst time)
     Public prioridade As Integer 'Prioridade
