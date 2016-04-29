@@ -3,15 +3,12 @@ Public Class Form1
     Private conta = 0
     Private Sub btnNovoProcesso_Click(sender As Object, e As EventArgs) Handles btnNovoProcesso.Click
         If (txtTempo.Text IsNot "" And txtNome.Text IsNot "" And txtPrioridade.Text IsNot "") Then
-
             FilaInicio.Add(New Processo(conta, txtTempo.Text, txtNome.Text, txtPrioridade.Text, ""))
-
             conta += 1
             reloadList()
         Else
             MsgBox("Por favor, preencha o formulário")
         End If
-        conta = 0
     End Sub
 
     Private Sub btnShow_Click(sender As Object, e As EventArgs)
@@ -25,11 +22,13 @@ Public Class Form1
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnAutoCriarProcesso.Click
         ToolStripStatusLabel2.Text = "Dependendo da quantidade de processos criados o sistema pode parar de responder por alguns momentos"
+        Dim Conta2 As Integer
         If (txtAutoProcessNome.Text IsNot "" And txtAutoQuantidade.Text IsNot "" And txtAutoMaxTempo.Text IsNot "" And criado = False) Then
             listLog.Items.Clear()
             For k = 0 To Convert.ToInt32(txtAutoQuantidade.Text) Step 1
-                FilaInicio.Add(New Processo(conta, RandomNumber(Convert.ToInt32(txtAutoMaxTempo.Text)), txtAutoProcessNome.Text & conta, RandomNumber(20), "")) 'cria os processos de forma randomica
+                Conta2 = conta
                 conta += 1
+                FilaInicio.Add(New Processo(Conta2, RandomNumber(Convert.ToInt32(txtAutoMaxTempo.Text)), txtAutoProcessNome.Text & conta, RandomNumber(20), "")) 'cria os processos de forma randomica
                 reloadList()
             Next
             criado = True
@@ -38,7 +37,6 @@ Public Class Form1
         Else
             MsgBox("Por favor, preencha o formulário")
         End If
-        conta = 0
     End Sub
 
     Public Function RandomNumber(ByVal n As Integer) As Integer
