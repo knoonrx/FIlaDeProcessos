@@ -31,6 +31,7 @@ Partial Class Form1
         Me.Prioridade = New System.Windows.Forms.Label()
         Me.txtPrioridade = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.txtTrocandoFila = New System.Windows.Forms.Label()
         Me.GroupBox13 = New System.Windows.Forms.GroupBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -104,7 +105,7 @@ Partial Class Form1
         Me.GroupBox14 = New System.Windows.Forms.GroupBox()
         Me.chkAutoAll = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.txtTrocandoFila = New System.Windows.Forms.Label()
+        Me.btnTeste = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
@@ -181,6 +182,7 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.btnTeste)
         Me.GroupBox1.Controls.Add(Me.txtTrocandoFila)
         Me.GroupBox1.Controls.Add(Me.GroupBox13)
         Me.GroupBox1.Controls.Add(Me.btnDistribui)
@@ -193,6 +195,14 @@ Partial Class Form1
         Me.GroupBox1.TabIndex = 9
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Controles"
+        '
+        'txtTrocandoFila
+        '
+        Me.txtTrocandoFila.AutoSize = True
+        Me.txtTrocandoFila.Location = New System.Drawing.Point(9, 306)
+        Me.txtTrocandoFila.Name = "txtTrocandoFila"
+        Me.txtTrocandoFila.Size = New System.Drawing.Size(0, 13)
+        Me.txtTrocandoFila.TabIndex = 24
         '
         'GroupBox13
         '
@@ -221,8 +231,8 @@ Partial Class Form1
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(219, 65)
         Me.Label8.TabIndex = 0
-        Me.Label8.Text = "Criar muitos processos ao mesmo tempo pode causar lentidão no sistema , se o prog" &
-    "rama deixar de responder, não faça nada, apenas aguarde o fim da operação em and" &
+        Me.Label8.Text = "Criar muitos processos ao mesmo tempo pode causar lentidão no sistema , se o prog" & _
+    "rama deixar de responder, não faça nada, apenas aguarde o fim da operação em and" & _
     "amento."
         '
         'btnDistribui
@@ -493,7 +503,7 @@ Partial Class Form1
         'ToolStripStatusLabel2
         '
         Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
-        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(120, 17)
+        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(121, 17)
         Me.ToolStripStatusLabel2.Text = "ToolStripStatusLabel2"
         '
         'GroupBox8
@@ -777,13 +787,14 @@ Partial Class Form1
         Me.Button1.Text = "Processar Todas"
         Me.Button1.UseVisualStyleBackColor = False
         '
-        'txtTrocandoFila
+        'btnTeste
         '
-        Me.txtTrocandoFila.AutoSize = True
-        Me.txtTrocandoFila.Location = New System.Drawing.Point(9, 306)
-        Me.txtTrocandoFila.Name = "txtTrocandoFila"
-        Me.txtTrocandoFila.Size = New System.Drawing.Size(0, 13)
-        Me.txtTrocandoFila.TabIndex = 24
+        Me.btnTeste.Location = New System.Drawing.Point(286, 277)
+        Me.btnTeste.Name = "btnTeste"
+        Me.btnTeste.Size = New System.Drawing.Size(97, 23)
+        Me.btnTeste.TabIndex = 23
+        Me.btnTeste.Text = "Teste"
+        Me.btnTeste.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -914,4 +925,5 @@ Partial Class Form1
     Friend WithEvents Button1 As Button
     Friend WithEvents chkAutoAll As CheckBox
     Friend WithEvents txtTrocandoFila As Label
+    Friend WithEvents btnTeste As System.Windows.Forms.Button
 End Class

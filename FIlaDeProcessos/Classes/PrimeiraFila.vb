@@ -9,7 +9,6 @@
         Dim destino As String = ""
         Dim atual As String = ""
 
-#Region "switch ..."
         Select Case numerador
             Case 1
                 filaPosterior = Fila2
@@ -66,7 +65,6 @@
                 filaAnterior = Nothing
                 listaSaida = Nothing
         End Select
-#End Region
 
         If process IsNot Nothing Then
             Form1.lblCurrent.Text = ("Fila Atual: " & numerador & vbCrLf &
@@ -78,7 +76,7 @@
             listaExibicao.Items.Add(process.id).SubItems.AddRange((New String() {process.nome, process.tempo, process.prioridade})) 'coloca o processo no final da lista.
             listaExibicao.Items.RemoveAt(0) 'removo o primeiro item da lista
             listaExibicao.Items.Clear() 'limpo a lista
-#Region "Troca de filas"
+
             If process.tempo <= 0 Then
                 Form1.listLog.Items.Add(process.id).SubItems.AddRange((New String() {process.nome, process.tempo, process.prioridade})) 'joga o processo finalizado para a lista de log
                 Form1.txtTrocandoFila.Text = "O processo " & process.nome & " terminou."
@@ -108,7 +106,7 @@
             For i = 0 To processos.Count - 1 Step 1
                 listaExibicao.Items.Add(processos(i).id).SubItems.AddRange((New String() {processos(i).nome, processos(i).tempo, processos(i).prioridade}))
             Next
-#End Region
+
         ElseIf fila.Count <= 0 Then 'terminou a lista está vazia é hora de dar tchau :)
             listaExibicao.Items.Clear()
             Form1.txtTrocandoFila.Text = ""

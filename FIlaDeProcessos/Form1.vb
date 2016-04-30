@@ -126,55 +126,104 @@ Public Class Form1
     End Sub
 
     Private Async Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        If chkAutoAll.Checked = True Then
+        If (chkAutoAll.Checked = True) Then
             Do While Fila1.Count > 0 Or Fila2.Count > 0 Or Fila3.Count > 0 Or Fila4.Count > 0 Or Fila5.Count > 0
 
-                If Fila1.Count > 0 Then
-                    PrimeiraFila.primeiro(listSaida1, Fila1, 1, 1)
-                    Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
-                End If
-                If Fila2.Count > 0 Then
-                    PrimeiraFila.primeiro(listSaida2, Fila2, 4, 2)
-                    Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
-                End If
-                If Fila3.Count > 0 Then
-                    PrimeiraFila.primeiro(listSaida3, Fila3, 7, 3)
-                    Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
-                End If
-                If Fila4.Count > 0 Then
-                    PrimeiraFila.primeiro(listSaida4, Fila4, 10, 4)
-                    Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
-                End If
-                If Fila5.Count > 0 Then
-                    PrimeiraFila.primeiro(listSaida5, Fila5, 15, 5)
-                    Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
-                End If
-
+                Select Case maiorProcesso()
+                    Case 1
+                        If Fila1.Count > 0 Then
+                            PrimeiraFila.primeiro(listSaida1, Fila1, 1, 1)
+                            Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
+                        End If
+                    Case 2
+                        If Fila2.Count > 0 Then
+                            PrimeiraFila.primeiro(listSaida2, Fila2, 4, 2)
+                            Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
+                        End If
+                    Case 3
+                        If Fila3.Count > 0 Then
+                            PrimeiraFila.primeiro(listSaida3, Fila3, 7, 3)
+                            Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
+                        End If
+                    Case 4
+                        If Fila4.Count > 0 Then
+                            PrimeiraFila.primeiro(listSaida4, Fila4, 10, 4)
+                            Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
+                        End If
+                    Case 5
+                        If Fila5.Count > 0 Then
+                            PrimeiraFila.primeiro(listSaida5, Fila5, 15, 5)
+                            Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
+                        End If
+                End Select
             Loop
             chkAutoAll.Checked = False
             ToolStripStatusLabel2.Text = "Todos os processos foram finalizados" 'tchau :)
-        Else
-            If Fila1.Count > 0 Then
-                PrimeiraFila.primeiro(listSaida1, Fila1, 1, 1)
-                Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
-            End If
-            If Fila2.Count > 0 Then
-                PrimeiraFila.primeiro(listSaida2, Fila2, 4, 2)
-                Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
-            End If
-            If Fila3.Count > 0 Then
-                PrimeiraFila.primeiro(listSaida3, Fila3, 7, 3)
-                Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
-            End If
-            If Fila4.Count > 0 Then
-                PrimeiraFila.primeiro(listSaida4, Fila4, 10, 4)
-                Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
-            End If
-            If Fila5.Count > 0 Then
-                PrimeiraFila.primeiro(listSaida5, Fila5, 15, 5)
-                Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
-            End If
+        End If
+
+        If (chkAutoAll.Checked = False) Then
+            Select Case maiorProcesso()
+                Case 1
+                    If Fila1.Count > 0 Then
+                        PrimeiraFila.primeiro(listSaida1, Fila1, 1, 1)
+                        Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
+                    End If
+                Case 2
+                    If Fila2.Count > 0 Then
+                        PrimeiraFila.primeiro(listSaida2, Fila2, 4, 2)
+                        Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
+                    End If
+                Case 3
+                    If Fila3.Count > 0 Then
+                        PrimeiraFila.primeiro(listSaida3, Fila3, 7, 3)
+                        Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
+                    End If
+                Case 4
+                    If Fila4.Count > 0 Then
+                        PrimeiraFila.primeiro(listSaida4, Fila4, 10, 4)
+                        Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
+                    End If
+                Case 5
+                    If Fila5.Count > 0 Then
+                        PrimeiraFila.primeiro(listSaida5, Fila5, 15, 5)
+                        Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
+                    End If
+            End Select
         End If
     End Sub
 
+
+    Public Function maiorProcesso() As Integer
+
+        Dim listTemporaria As New List(Of Tempo)()
+        If Fila1.Count > 0 Then
+            Dim f1 = From item In Fila1 Order By item.prioridade Descending
+            listTemporaria.Add(New Tempo(1, f1.FirstOrDefault().prioridade))
+        End If
+        If Fila2.Count > 0 Then
+            Dim f2 = From item In Fila2 Order By item.prioridade Descending
+            listTemporaria.Add(New Tempo(2, f2.FirstOrDefault().prioridade))
+        End If
+        If Fila3.Count > 0 Then
+            Dim f3 = From item In Fila3 Order By item.prioridade Descending
+            listTemporaria.Add(New Tempo(3, f3.FirstOrDefault().prioridade))
+        End If
+        If Fila4.Count > 0 Then
+            Dim f4 = From item In Fila4 Order By item.prioridade Descending
+            listTemporaria.Add(New Tempo(4, f4.FirstOrDefault().prioridade))
+        End If
+        If Fila5.Count > 0 Then
+            Dim f5 = From item In Fila5 Order By item.prioridade Descending
+            listTemporaria.Add(New Tempo(5, f5.FirstOrDefault().prioridade))
+        End If
+
+        Dim ultima = From item In listTemporaria Order By item.prioridade Descending
+
+        Return ultima.FirstOrDefault().list
+
+    End Function
+
+    Private Sub btnTeste_Click(sender As Object, e As EventArgs) Handles btnTeste.Click
+        MsgBox(maiorProcesso())
+    End Sub
 End Class
