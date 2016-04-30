@@ -210,10 +210,13 @@ Public Class Form1
             listTemporaria.Add(New Tempo(5, f5.FirstOrDefault().prioridade))
         End If
 
-        Dim ultima = From item In listTemporaria Order By item.prioridade Descending
+        If Fila1.Count > 0 Or Fila2.Count > 0 Or Fila3.Count > 0 Or Fila4.Count > 0 Or Fila5.Count > 0 Then
+            Dim ultima = From item In listTemporaria Order By item.prioridade Descending
 
-        Return ultima.FirstOrDefault().list
-
+            Return ultima.FirstOrDefault().list
+        Else
+            Return 0
+        End If
     End Function
 
     Private Sub btnTeste_Click(sender As Object, e As EventArgs) Handles btnTeste.Click
