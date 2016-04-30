@@ -1,6 +1,6 @@
 ﻿Imports System.Threading
 Public Class Form1
-    Private conta = 0
+    Private conta = 1
     Private Sub btnNovoProcesso_Click(sender As Object, e As EventArgs) Handles btnNovoProcesso.Click
         If (txtTempo.Text IsNot "" And txtNome.Text IsNot "" And txtPrioridade.Text IsNot "") Then
             FilaInicio.Add(New Processo(conta, txtTempo.Text, txtNome.Text, txtPrioridade.Text, ""))
@@ -14,21 +14,23 @@ Public Class Form1
     Private Sub btnShow_Click(sender As Object, e As EventArgs)
         reloadList()
     End Sub
+
     Public Sub reloadList()
         listProcess.Items.Clear()
         For Each processo In FilaInicio
             listProcess.Items.Add(processo.id).SubItems.AddRange(New String() {processo.nome, processo.tempo, processo.prioridade})
         Next
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnAutoCriarProcesso.Click
+
+    Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles btnAutoCriarProcesso.Click
         ToolStripStatusLabel2.Text = "Dependendo da quantidade de processos criados o sistema pode parar de responder por alguns momentos"
-        Dim Conta2 As Integer
+
         If (txtAutoProcessNome.Text IsNot "" And txtAutoQuantidade.Text IsNot "" And txtAutoMaxTempo.Text IsNot "" And criado = False) Then
             listLog.Items.Clear()
-            For k = 0 To Convert.ToInt32(txtAutoQuantidade.Text) Step 1
-                Conta2 = conta
+            For k = 0 To Convert.ToInt32(txtAutoQuantidade.Text) - 1 Step 1
+                Await Task.Delay(10) 'atrasa o programa de acordo com valor selecionado
+                FilaInicio.Add(New Processo(conta, RandomNumber(Convert.ToInt32(txtAutoMaxTempo.Text)), txtAutoProcessNome.Text & conta, RandomNumber(20), "")) 'cria os processos de forma randomica
                 conta += 1
-                FilaInicio.Add(New Processo(Conta2, RandomNumber(Convert.ToInt32(txtAutoMaxTempo.Text)), txtAutoProcessNome.Text & conta, RandomNumber(20), "")) 'cria os processos de forma randomica
                 reloadList()
             Next
             criado = True
@@ -40,10 +42,10 @@ Public Class Form1
     End Sub
 
     Public Function RandomNumber(ByVal n As Integer) As Integer
-        'initialize random number generator
-        Dim r As New Random(System.DateTime.Now.Millisecond)
+        Dim r As New Random(System.DateTime.Now.Millisecond) 'initialize random number generator
         Return r.Next(1, n)
     End Function
+
     Public Function atraso() As Integer
         If rAtraso1.Checked = True Then
             Return 1000
@@ -63,37 +65,28 @@ Public Class Form1
     End Sub
 
     Public Sub distribuir()
-        Dim c1 = 0
-        Dim c2 = 0
-        Dim c3 = 0
-        Dim c4 = 0
-        Dim c5 = 0
+  
         Dim processos = From item In FilaInicio
                         Order By item.prioridade Descending 'Or item.id Descending 'uso a sintax linq (sql) para ordenar os processos de acordo com a prioridade e ID
 
         For i = 0 To processos.Count - 1 Step 1
             If processos(i) IsNot Nothing Then 'verifica se o objeto atual existe ou não
 
-                If processos(i).prioridade <= 2 Then 'aqui eu começo a distribuir os processos, cada um para uma fila com um quantum mais adequado
+                If processos(i).tempo <= 2 Then 'aqui eu começo a distribuir os processos, cada um para uma fila com um quantum mais adequado
                     listSaida1.Items.Add(processos(i).id).SubItems.AddRange(New String() {processos(i).nome, processos(i).tempo, processos(i).prioridade}) 'carrego a lista de exibição
                     Fila1.Add(New Processo(processos(i).id, processos(i).tempo, processos(i).nome, processos(i).prioridade, "")) 'carrego a lista de dados
-                    c1 += 1
-                ElseIf processos(i).prioridade > 2 And processos(i).prioridade <= 5 Then
+                ElseIf processos(i).tempo > 2 And processos(i).tempo <= 5 Then
                     listSaida2.Items.Add(processos(i).id).SubItems.AddRange(New String() {processos(i).nome, processos(i).tempo, processos(i).prioridade})
                     Fila2.Add(New Processo(processos(i).id, processos(i).tempo, processos(i).nome, processos(i).prioridade, ""))
-                    c2 += 1
-                ElseIf processos(i).prioridade > 5 And processos(i).prioridade <= 8 Then
+                ElseIf processos(i).tempo > 5 And processos(i).tempo <= 8 Then
                     listSaida3.Items.Add(processos(i).id).SubItems.AddRange(New String() {processos(i).nome, processos(i).tempo, processos(i).prioridade})
                     Fila3.Add(New Processo(processos(i).id, processos(i).tempo, processos(i).nome, processos(i).prioridade, ""))
-                    c3 += 1
-                ElseIf processos(i).prioridade > 8 And processos(i).prioridade <= 11 Then
+                ElseIf processos(i).tempo > 8 And processos(i).tempo <= 11 Then
                     listSaida4.Items.Add(processos(i).id).SubItems.AddRange(New String() {processos(i).nome, processos(i).tempo, processos(i).prioridade})
                     Fila4.Add(New Processo(processos(i).id, processos(i).tempo, processos(i).nome, processos(i).prioridade, ""))
-                    c4 += 1
                 Else
                     listSaida5.Items.Add(processos(i).id).SubItems.AddRange(New String() {processos(i).nome, processos(i).tempo, processos(i).prioridade})
                     Fila5.Add(New Processo(processos(i).id, processos(i).tempo, processos(i).nome, processos(i).prioridade, ""))
-                    c5 += 1
                 End If
 
             End If
