@@ -2,7 +2,10 @@
 
     Public Shared Sub primeiro(listaExibicao As ListView, fila As List(Of Processo), quantum As Integer, numerador As Integer)
 
-        Dim process = (From currentProcess In fila).FirstOrDefault()
+        'Dim process = (From currentProcess In fila).FirstOrDefault()
+
+        Dim process = (From currentProcess In fila Order By currentProcess.prioridade Descending).FirstOrDefault 'pego o processo de maior prioridade :)
+
         Dim filaAnterior As List(Of Processo)
         Dim listaSaida As ListView
         Dim filaPosterior As List(Of Processo)
@@ -87,23 +90,26 @@
             ElseIf process.tempo > (2 * quantum) And Not numerador = 5 Then
                 filaPosterior.Add(New Processo(process.id, process.tempo, process.nome, process.prioridade, "")) 'seu processo você é muito grande para esta fila, sai daqui e vai pra outra --'
                 If numerador = 4 Then
-                    Form1.txtTrocandoFila.Text = "O processo " & process.nome & " foi para o final da fila 5."
+                    Form1.txtTrocandoFila.Text = "O processo " & process.nome & " foi para a fila 5."
                 Else
-                    Form1.txtTrocandoFila.Text = "O processo " & process.nome & " foi para o final da fila " & destino & "."
+                    Form1.txtTrocandoFila.Text = "O processo " & process.nome & " foi para a fila " & destino & "."
                 End If
                 limparLista(listaEntrada, filaPosterior)
             ElseIf process.tempo < quantum Then
                 filaAnterior.Add(New Processo(process.id, process.tempo, process.nome, process.prioridade, "")) 'seu processo você é muito pequeno para esta fila, sai daqui e vai pra outra --'
-                Form1.txtTrocandoFila.Text = "O processo " & process.nome & " foi para o final da fila " & destino & "."
+                Form1.txtTrocandoFila.Text = "O processo " & process.nome & " foi para a fila " & destino & "."
                 limparLista(listaSaida, filaAnterior)
             ElseIf process.tempo > 0 Then
                 fila.Add(New Processo(process.id, process.tempo, process.nome, process.prioridade, "")) 'coloco o primeiro item no final da fila já com o quantum subtraido ...
-                Form1.txtTrocandoFila.Text = "O processo " & process.nome & "  continua na fila " & atual & " mas foi para o final da fila."
+                Form1.txtTrocandoFila.Text = "O processo " & process.nome & "  continua na fila " & atual & "."
                 limparLista(listaEntrada, filaPosterior)
             End If
 
-            fila.RemoveAt(0) 'e removo o primeiro item da fila.
-            Dim processos = (From currentProcess In fila) 'agora releio a fila toda já modificada :)
+            fila.Remove(process) 'e removo o processo
+
+            Dim processos = From currentProcess In fila 'agora releio a fila toda já modificada :)
+                            Order By currentProcess.prioridade Descending 'claro na ordem descendente ordenado por prioridade
+
             For i = 0 To processos.Count - 1 Step 1
                 listaExibicao.Items.Add(processos(i).id).SubItems.AddRange((New String() {processos(i).nome, processos(i).tempo, processos(i).prioridade}))
             Next
@@ -118,7 +124,10 @@
 
     Private Shared Sub limparLista(lista As ListView, fila As List(Of Processo))
         lista.Items.Clear() 'vamos limpar e reler a lista...
-        For Each item In fila
+
+        Dim order = From item In fila Order By item.prioridade Descending 'ordenado por prioridade
+
+        For Each item In order
             lista.Items.Add(item.id).SubItems.AddRange(New String() {item.nome, item.tempo, item.prioridade})
         Next
     End Sub

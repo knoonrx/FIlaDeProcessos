@@ -1,5 +1,6 @@
 ﻿Imports System.Threading
 Public Class Form1
+
     Private conta = 1
     Private Sub btnNovoProcesso_Click(sender As Object, e As EventArgs) Handles btnNovoProcesso.Click
         If (txtTempo.Text IsNot "" And txtNome.Text IsNot "" And txtPrioridade.Text IsNot "") Then
@@ -205,23 +206,28 @@ Public Class Form1
         'Desse modo vai processar sempre os processo com maior Tempo primeiro, quando houverem dois processos em filas diferentes com prioridades igueis
         'criando dessa forma o critério de desempate.
         If Fila5.Count > 0 Then
-            listTemporaria.Add(New Tempo(5, Fila5.FirstOrDefault().prioridade)) 'adiciono o primeiro na lista temporária com o Número da Fila e o valor de sua prioridade (obj da class Tempo) ...
+            Dim process = (From currentProcess In Fila5 Order By currentProcess.prioridade Descending).FirstOrDefault
+            listTemporaria.Add(New Tempo(5, process.prioridade)) 'adiciono o primeiro na lista temporária com o Número da Fila e o valor de sua prioridade (obj da class Tempo) ...
         End If
         If Fila4.Count > 0 Then
-            listTemporaria.Add(New Tempo(4, Fila4.FirstOrDefault().prioridade))
+            Dim process = (From currentProcess In Fila4 Order By currentProcess.prioridade Descending).FirstOrDefault
+            listTemporaria.Add(New Tempo(4, process.prioridade))
         End If
         If Fila3.Count > 0 Then
-            listTemporaria.Add(New Tempo(3, Fila3.FirstOrDefault().prioridade))
+            Dim process = (From currentProcess In Fila3 Order By currentProcess.prioridade Descending).FirstOrDefault
+            listTemporaria.Add(New Tempo(3, process.prioridade))
         End If
         If Fila2.Count > 0 Then
-            listTemporaria.Add(New Tempo(2, Fila2.FirstOrDefault().prioridade))
+            Dim process = (From currentProcess In Fila2 Order By currentProcess.prioridade Descending).FirstOrDefault
+            listTemporaria.Add(New Tempo(2, process.prioridade))
         End If
         If Fila1.Count > 0 Then
-            listTemporaria.Add(New Tempo(1, Fila1.FirstOrDefault().prioridade))
+            Dim process = (From currentProcess In Fila1 Order By currentProcess.prioridade Descending).FirstOrDefault
+            listTemporaria.Add(New Tempo(1, process.prioridade))
         End If
 
         If Fila1.Count > 0 Or Fila2.Count > 0 Or Fila3.Count > 0 Or Fila4.Count > 0 Or Fila5.Count > 0 Then 'Verifique se pelo menos uma das filas ainda não está vazia
-            Dim ultima = From item In listTemporaria Order By item.prioridade Descending 'se assim eu ordeno a lista temporária por prioridade de forma Descendente... Do maior para o menor.
+            Dim ultima = From item In listTemporaria Order By item.prioridade Descending 'se não estão vazias eu ordeno a lista temporária por prioridade de forma Descendente... Do maior para o menor.
             Return ultima.FirstOrDefault().list 'e finalmente retorno o numero da fila que deverá ser processada
         Else
             Return 0 'se todas as filas estiverem vazias não faça nada.
