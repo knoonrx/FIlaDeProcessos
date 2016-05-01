@@ -25,11 +25,23 @@ Public Class Form1
     Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles btnAutoCriarProcesso.Click
         ToolStripStatusLabel2.Text = "Dependendo da quantidade de processos criados o sistema pode parar de responder por alguns momentos"
 
+        Dim processoTempo As Integer
+
         If (txtAutoProcessNome.Text IsNot "" And txtAutoQuantidade.Text IsNot "" And txtAutoMaxTempo.Text IsNot "" And criado = False) Then
             listLog.Items.Clear()
             For k = 0 To Convert.ToInt32(txtAutoQuantidade.Text) - 1 Step 1
+                Dim i = 0
+
+                'esse looping é uma forma de atrazar a execução permitindo que o intervalo entre o número randomico gerado entre
+                'o Tempo do processo e a prioridade sejam diferentes. não é muito elegante mas funciona :)
+                While i < 1
+                    processoTempo = RandomNumber(Convert.ToInt32(txtAutoMaxTempo.Text + 1)) 'com base no valor escolhido vamos gerar de forma randômica o tempo dos processos.
+                    i += 1
+                    Await Task.Delay(10) 'atrasa o programa de acordo com valor selecionado
+                End While
+
                 Await Task.Delay(10) 'atrasa o programa de acordo com valor selecionado
-                FilaInicio.Add(New Processo(conta, RandomNumber(Convert.ToInt32(txtAutoMaxTempo.Text)), txtAutoProcessNome.Text & conta, RandomNumber(20), "")) 'cria os processos de forma randomica
+                FilaInicio.Add(New Processo(conta, processoTempo, txtAutoProcessNome.Text & conta, RandomNumber(21), "")) 'cria os processos de forma randomica
                 conta += 1
                 reloadList()
             Next
@@ -42,11 +54,11 @@ Public Class Form1
     End Sub
 
     Public Function RandomNumber(ByVal n As Integer) As Integer
-        Dim r As New Random(System.DateTime.Now.Millisecond) 'initialize random number generator
+        Dim r As Random = New Random 'initialize random number generator
         Return r.Next(1, n)
     End Function
 
-    Public Function atraso() As Integer
+    Public Function atraso() As Integer 'função que retorna o tempo de espera entre a execução de um processo e outro
         If rAtraso1.Checked = True Then
             Return 1000
         ElseIf rAtraso2.Checked = True Then
@@ -54,9 +66,9 @@ Public Class Form1
         ElseIf rAtraso3.Checked = True Then
             Return 3000
         ElseIf rFast.Checked = True Then
-            Return 0
+            Return 10
         Else
-            Return 0
+            Return 10
         End If
     End Function
 
@@ -65,9 +77,9 @@ Public Class Form1
     End Sub
 
     Public Sub distribuir()
-  
+
         Dim processos = From item In FilaInicio
-                        Order By item.prioridade Descending 'Or item.id Descending 'uso a sintax linq (sql) para ordenar os processos de acordo com a prioridade e ID
+                        Order By item.prioridade Descending 'uso a sintax linq (sql) para ordenar os processos de acordo com a prioridade e ID
 
         For i = 0 To processos.Count - 1 Step 1
             If processos(i) IsNot Nothing Then 'verifica se o objeto atual existe ou não
@@ -120,8 +132,8 @@ Public Class Form1
 
     Private Async Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
         If (chkAutoAll.Checked = True) Then
-            Do While Fila1.Count > 0 Or Fila2.Count > 0 Or Fila3.Count > 0 Or Fila4.Count > 0 Or Fila5.Count > 0
 
+            Do While Fila1.Count > 0 Or Fila2.Count > 0 Or Fila3.Count > 0 Or Fila4.Count > 0 Or Fila5.Count > 0
                 Select Case maiorProcesso()
                     Case 1
                         If Fila1.Count > 0 Then
@@ -150,7 +162,7 @@ Public Class Form1
                         End If
                 End Select
             Loop
-            chkAutoAll.Checked = False
+            ' chkAutoAll.Checked = False
             ToolStripStatusLabel2.Text = "Todos os processos foram finalizados" 'tchau :)
         End If
 
@@ -185,41 +197,35 @@ Public Class Form1
         End If
     End Sub
 
-
     Public Function maiorProcesso() As Integer
 
-        Dim listTemporaria As New List(Of Tempo)()
-        If Fila1.Count > 0 Then
-            Dim f1 = From item In Fila1 Order By item.prioridade Descending
-            listTemporaria.Add(New Tempo(1, f1.FirstOrDefault().prioridade))
-        End If
-        If Fila2.Count > 0 Then
-            Dim f2 = From item In Fila2 Order By item.prioridade Descending
-            listTemporaria.Add(New Tempo(2, f2.FirstOrDefault().prioridade))
-        End If
-        If Fila3.Count > 0 Then
-            Dim f3 = From item In Fila3 Order By item.prioridade Descending
-            listTemporaria.Add(New Tempo(3, f3.FirstOrDefault().prioridade))
+        Dim listTemporaria As New List(Of Tempo)() 'crio uma lista de processos temporária 
+
+        'começo a enfileirar pelo primeiro processo da fila 5 até a fila 1 ou seja, da fila de maior quantum até a fila de menor.
+        'Desse modo vai processar sempre os processo com maior Tempo primeiro, quando houverem dois processos em filas diferentes com prioridades igueis
+        'criando dessa forma o critério de desempate.
+        If Fila5.Count > 0 Then
+            listTemporaria.Add(New Tempo(5, Fila5.FirstOrDefault().prioridade)) 'adiciono o primeiro na lista temporária com o Número da Fila e o valor de sua prioridade (obj da class Tempo) ...
         End If
         If Fila4.Count > 0 Then
-            Dim f4 = From item In Fila4 Order By item.prioridade Descending
-            listTemporaria.Add(New Tempo(4, f4.FirstOrDefault().prioridade))
+            listTemporaria.Add(New Tempo(4, Fila4.FirstOrDefault().prioridade))
         End If
-        If Fila5.Count > 0 Then
-            Dim f5 = From item In Fila5 Order By item.prioridade Descending
-            listTemporaria.Add(New Tempo(5, f5.FirstOrDefault().prioridade))
+        If Fila3.Count > 0 Then
+            listTemporaria.Add(New Tempo(3, Fila3.FirstOrDefault().prioridade))
+        End If
+        If Fila2.Count > 0 Then
+            listTemporaria.Add(New Tempo(2, Fila2.FirstOrDefault().prioridade))
+        End If
+        If Fila1.Count > 0 Then
+            listTemporaria.Add(New Tempo(1, Fila1.FirstOrDefault().prioridade))
         End If
 
-        If Fila1.Count > 0 Or Fila2.Count > 0 Or Fila3.Count > 0 Or Fila4.Count > 0 Or Fila5.Count > 0 Then
-            Dim ultima = From item In listTemporaria Order By item.prioridade Descending
-
-            Return ultima.FirstOrDefault().list
+        If Fila1.Count > 0 Or Fila2.Count > 0 Or Fila3.Count > 0 Or Fila4.Count > 0 Or Fila5.Count > 0 Then 'Verifique se pelo menos uma das filas ainda não está vazia
+            Dim ultima = From item In listTemporaria Order By item.prioridade Descending 'se assim eu ordeno a lista temporária por prioridade de forma Descendente... Do maior para o menor.
+            Return ultima.FirstOrDefault().list 'e finalmente retorno o numero da fila que deverá ser processada
         Else
-            Return 0
+            Return 0 'se todas as filas estiverem vazias não faça nada.
         End If
     End Function
 
-    Private Sub btnTeste_Click(sender As Object, e As EventArgs) Handles btnTeste.Click
-        MsgBox(maiorProcesso())
-    End Sub
 End Class
