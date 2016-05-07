@@ -107,8 +107,7 @@
 
             fila.Remove(process) 'e removo o processo
 
-            Dim processos = From currentProcess In fila 'agora releio a fila toda já modificada :)
-                            Order By currentProcess.prioridade Descending 'claro na ordem descendente ordenado por prioridade
+            Dim processos = From currentProcess In fila Order By currentProcess.prioridade Descending 'claro na ordem descendente ordenado por prioridade
 
             For i = 0 To processos.Count - 1 Step 1
                 listaExibicao.Items.Add(processos(i).id).SubItems.AddRange((New String() {processos(i).nome, processos(i).tempo, processos(i).prioridade}))
