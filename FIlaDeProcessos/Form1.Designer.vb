@@ -105,6 +105,16 @@ Partial Class Form1
         Me.GroupBox14 = New System.Windows.Forms.GroupBox()
         Me.chkAutoAll = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.lblExecf1 = New System.Windows.Forms.Label()
+        Me.lblParf1 = New System.Windows.Forms.Label()
+        Me.lblExecf2 = New System.Windows.Forms.Label()
+        Me.lblParf2 = New System.Windows.Forms.Label()
+        Me.lblExecf3 = New System.Windows.Forms.Label()
+        Me.lblParf3 = New System.Windows.Forms.Label()
+        Me.lblExecf4 = New System.Windows.Forms.Label()
+        Me.lblExecf5 = New System.Windows.Forms.Label()
+        Me.lblParf4 = New System.Windows.Forms.Label()
+        Me.lblParf5 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
@@ -187,9 +197,9 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.GroupBox7)
         Me.GroupBox1.Controls.Add(Me.GroupBox6)
         Me.GroupBox1.Controls.Add(Me.GroupBox5)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 20)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 19)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(491, 333)
+        Me.GroupBox1.Size = New System.Drawing.Size(491, 343)
         Me.GroupBox1.TabIndex = 9
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Controles"
@@ -197,6 +207,7 @@ Partial Class Form1
         'txtTrocandoFila
         '
         Me.txtTrocandoFila.AutoSize = True
+        Me.txtTrocandoFila.ForeColor = System.Drawing.Color.Red
         Me.txtTrocandoFila.Location = New System.Drawing.Point(9, 306)
         Me.txtTrocandoFila.Name = "txtTrocandoFila"
         Me.txtTrocandoFila.Size = New System.Drawing.Size(0, 13)
@@ -206,9 +217,9 @@ Partial Class Form1
         '
         Me.GroupBox13.Controls.Add(Me.Label7)
         Me.GroupBox13.Controls.Add(Me.Label8)
-        Me.GroupBox13.Location = New System.Drawing.Point(240, 143)
+        Me.GroupBox13.Location = New System.Drawing.Point(240, 122)
         Me.GroupBox13.Name = "GroupBox13"
-        Me.GroupBox13.Size = New System.Drawing.Size(245, 110)
+        Me.GroupBox13.Size = New System.Drawing.Size(245, 94)
         Me.GroupBox13.TabIndex = 15
         Me.GroupBox13.TabStop = False
         Me.GroupBox13.Text = "Observação:"
@@ -235,7 +246,7 @@ Partial Class Form1
         '
         'btnDistribui
         '
-        Me.btnDistribui.Location = New System.Drawing.Point(6, 224)
+        Me.btnDistribui.Location = New System.Drawing.Point(6, 207)
         Me.btnDistribui.Name = "btnDistribui"
         Me.btnDistribui.Size = New System.Drawing.Size(228, 52)
         Me.btnDistribui.TabIndex = 23
@@ -251,7 +262,7 @@ Partial Class Form1
         Me.GroupBox7.Controls.Add(Me.Prioridade)
         Me.GroupBox7.Controls.Add(Me.txtNome)
         Me.GroupBox7.Controls.Add(Me.txtTempo)
-        Me.GroupBox7.Location = New System.Drawing.Point(6, 29)
+        Me.GroupBox7.Location = New System.Drawing.Point(6, 14)
         Me.GroupBox7.Name = "GroupBox7"
         Me.GroupBox7.Size = New System.Drawing.Size(113, 189)
         Me.GroupBox7.TabIndex = 22
@@ -267,7 +278,7 @@ Partial Class Form1
         Me.GroupBox6.Controls.Add(Me.txtAutoQuantidade)
         Me.GroupBox6.Controls.Add(Me.Label4)
         Me.GroupBox6.Controls.Add(Me.txtAutoProcessNome)
-        Me.GroupBox6.Location = New System.Drawing.Point(125, 29)
+        Me.GroupBox6.Location = New System.Drawing.Point(125, 14)
         Me.GroupBox6.Name = "GroupBox6"
         Me.GroupBox6.Size = New System.Drawing.Size(109, 189)
         Me.GroupBox6.TabIndex = 17
@@ -337,12 +348,12 @@ Partial Class Form1
         Me.GroupBox5.Controls.Add(Me.rAtraso1)
         Me.GroupBox5.Controls.Add(Me.rAtraso2)
         Me.GroupBox5.Controls.Add(Me.rAtraso3)
-        Me.GroupBox5.Location = New System.Drawing.Point(240, 29)
+        Me.GroupBox5.Location = New System.Drawing.Point(240, 0)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(245, 110)
+        Me.GroupBox5.Size = New System.Drawing.Size(245, 120)
         Me.GroupBox5.TabIndex = 15
         Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "Atrazo"
+        Me.GroupBox5.Text = "Atraso"
         '
         'rFast
         '
@@ -424,7 +435,7 @@ Partial Class Form1
         Me.GroupBox2.Size = New System.Drawing.Size(230, 333)
         Me.GroupBox2.TabIndex = 12
         Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Fila Inicial"
+        Me.GroupBox2.Text = "Lista De Processos"
         '
         'GroupBox3
         '
@@ -434,7 +445,7 @@ Partial Class Form1
         Me.GroupBox3.Size = New System.Drawing.Size(230, 333)
         Me.GroupBox3.TabIndex = 13
         Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Fila Final"
+        Me.GroupBox3.Text = "Processos Finalizados"
         '
         'listLog
         '
@@ -469,9 +480,9 @@ Partial Class Form1
         'GroupBox4
         '
         Me.GroupBox4.Controls.Add(Me.lblCurrent)
-        Me.GroupBox4.Location = New System.Drawing.Point(509, 20)
+        Me.GroupBox4.Location = New System.Drawing.Point(255, 228)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(214, 100)
+        Me.GroupBox4.Size = New System.Drawing.Size(242, 100)
         Me.GroupBox4.TabIndex = 14
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Ações"
@@ -479,6 +490,7 @@ Partial Class Form1
         'lblCurrent
         '
         Me.lblCurrent.AutoSize = True
+        Me.lblCurrent.ForeColor = System.Drawing.Color.Red
         Me.lblCurrent.Location = New System.Drawing.Point(6, 16)
         Me.lblCurrent.Name = "lblCurrent"
         Me.lblCurrent.Size = New System.Drawing.Size(0, 13)
@@ -758,7 +770,7 @@ Partial Class Form1
         Me.GroupBox14.Controls.Add(Me.btnTestefila2)
         Me.GroupBox14.Controls.Add(Me.btnTestefila4)
         Me.GroupBox14.Controls.Add(Me.btnTestefila3)
-        Me.GroupBox14.Location = New System.Drawing.Point(509, 120)
+        Me.GroupBox14.Location = New System.Drawing.Point(509, 20)
         Me.GroupBox14.Name = "GroupBox14"
         Me.GroupBox14.Size = New System.Drawing.Size(214, 233)
         Me.GroupBox14.TabIndex = 15
@@ -785,11 +797,121 @@ Partial Class Form1
         Me.Button1.Text = "Processar Todas"
         Me.Button1.UseVisualStyleBackColor = False
         '
+        'lblExecf1
+        '
+        Me.lblExecf1.AutoSize = True
+        Me.lblExecf1.ForeColor = System.Drawing.Color.DarkGreen
+        Me.lblExecf1.Location = New System.Drawing.Point(15, 695)
+        Me.lblExecf1.Name = "lblExecf1"
+        Me.lblExecf1.Size = New System.Drawing.Size(64, 13)
+        Me.lblExecf1.TabIndex = 21
+        Me.lblExecf1.Text = "Executando"
+        '
+        'lblParf1
+        '
+        Me.lblParf1.AutoSize = True
+        Me.lblParf1.ForeColor = System.Drawing.Color.Red
+        Me.lblParf1.Location = New System.Drawing.Point(194, 695)
+        Me.lblParf1.Name = "lblParf1"
+        Me.lblParf1.Size = New System.Drawing.Size(41, 13)
+        Me.lblParf1.TabIndex = 23
+        Me.lblParf1.Text = "Parado"
+        '
+        'lblExecf2
+        '
+        Me.lblExecf2.AutoSize = True
+        Me.lblExecf2.ForeColor = System.Drawing.Color.DarkGreen
+        Me.lblExecf2.Location = New System.Drawing.Point(255, 695)
+        Me.lblExecf2.Name = "lblExecf2"
+        Me.lblExecf2.Size = New System.Drawing.Size(64, 13)
+        Me.lblExecf2.TabIndex = 24
+        Me.lblExecf2.Text = "Executando"
+        '
+        'lblParf2
+        '
+        Me.lblParf2.AutoSize = True
+        Me.lblParf2.ForeColor = System.Drawing.Color.Red
+        Me.lblParf2.Location = New System.Drawing.Point(430, 695)
+        Me.lblParf2.Name = "lblParf2"
+        Me.lblParf2.Size = New System.Drawing.Size(41, 13)
+        Me.lblParf2.TabIndex = 25
+        Me.lblParf2.Text = "Parado"
+        '
+        'lblExecf3
+        '
+        Me.lblExecf3.AutoSize = True
+        Me.lblExecf3.ForeColor = System.Drawing.Color.DarkGreen
+        Me.lblExecf3.Location = New System.Drawing.Point(491, 695)
+        Me.lblExecf3.Name = "lblExecf3"
+        Me.lblExecf3.Size = New System.Drawing.Size(64, 13)
+        Me.lblExecf3.TabIndex = 26
+        Me.lblExecf3.Text = "Executando"
+        '
+        'lblParf3
+        '
+        Me.lblParf3.AutoSize = True
+        Me.lblParf3.ForeColor = System.Drawing.Color.Red
+        Me.lblParf3.Location = New System.Drawing.Point(666, 695)
+        Me.lblParf3.Name = "lblParf3"
+        Me.lblParf3.Size = New System.Drawing.Size(41, 13)
+        Me.lblParf3.TabIndex = 27
+        Me.lblParf3.Text = "Parado"
+        '
+        'lblExecf4
+        '
+        Me.lblExecf4.AutoSize = True
+        Me.lblExecf4.ForeColor = System.Drawing.Color.DarkGreen
+        Me.lblExecf4.Location = New System.Drawing.Point(735, 695)
+        Me.lblExecf4.Name = "lblExecf4"
+        Me.lblExecf4.Size = New System.Drawing.Size(64, 13)
+        Me.lblExecf4.TabIndex = 28
+        Me.lblExecf4.Text = "Executando"
+        '
+        'lblExecf5
+        '
+        Me.lblExecf5.AutoSize = True
+        Me.lblExecf5.ForeColor = System.Drawing.Color.DarkGreen
+        Me.lblExecf5.Location = New System.Drawing.Point(972, 696)
+        Me.lblExecf5.Name = "lblExecf5"
+        Me.lblExecf5.Size = New System.Drawing.Size(64, 13)
+        Me.lblExecf5.TabIndex = 29
+        Me.lblExecf5.Text = "Executando"
+        '
+        'lblParf4
+        '
+        Me.lblParf4.AutoSize = True
+        Me.lblParf4.ForeColor = System.Drawing.Color.Red
+        Me.lblParf4.Location = New System.Drawing.Point(913, 695)
+        Me.lblParf4.Name = "lblParf4"
+        Me.lblParf4.Size = New System.Drawing.Size(41, 13)
+        Me.lblParf4.TabIndex = 30
+        Me.lblParf4.Text = "Parado"
+        '
+        'lblParf5
+        '
+        Me.lblParf5.AutoSize = True
+        Me.lblParf5.ForeColor = System.Drawing.Color.Red
+        Me.lblParf5.Location = New System.Drawing.Point(1153, 695)
+        Me.lblParf5.Name = "lblParf5"
+        Me.lblParf5.Size = New System.Drawing.Size(41, 13)
+        Me.lblParf5.TabIndex = 31
+        Me.lblParf5.Text = "Parado"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1217, 731)
+        Me.Controls.Add(Me.lblParf5)
+        Me.Controls.Add(Me.lblParf4)
+        Me.Controls.Add(Me.lblExecf5)
+        Me.Controls.Add(Me.lblExecf4)
+        Me.Controls.Add(Me.lblParf3)
+        Me.Controls.Add(Me.lblExecf3)
+        Me.Controls.Add(Me.lblParf2)
+        Me.Controls.Add(Me.lblExecf2)
+        Me.Controls.Add(Me.lblParf1)
+        Me.Controls.Add(Me.lblExecf1)
         Me.Controls.Add(Me.GroupBox14)
         Me.Controls.Add(Me.GroupBox12)
         Me.Controls.Add(Me.GroupBox10)
@@ -914,4 +1036,14 @@ Partial Class Form1
     Friend WithEvents Button1 As Button
     Friend WithEvents chkAutoAll As CheckBox
     Friend WithEvents txtTrocandoFila As Label
+    Friend WithEvents lblExecf1 As Label
+    Friend WithEvents lblParf1 As Label
+    Friend WithEvents lblExecf2 As Label
+    Friend WithEvents lblParf2 As Label
+    Friend WithEvents lblExecf3 As Label
+    Friend WithEvents lblParf3 As Label
+    Friend WithEvents lblExecf4 As Label
+    Friend WithEvents lblExecf5 As Label
+    Friend WithEvents lblParf4 As Label
+    Friend WithEvents lblParf5 As Label
 End Class
