@@ -240,8 +240,8 @@ Partial Class Form1
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(219, 65)
         Me.Label8.TabIndex = 0
-        Me.Label8.Text = "Criar muitos processos ao mesmo tempo pode causar lentidão no sistema , se o prog" &
-    "rama deixar de responder, não faça nada, apenas aguarde o fim da operação em and" &
+        Me.Label8.Text = "Criar muitos processos ao mesmo tempo pode causar lentidão no sistema , se o prog" & _
+    "rama deixar de responder, não faça nada, apenas aguarde o fim da operação em and" & _
     "amento."
         '
         'btnDistribui
@@ -499,7 +499,7 @@ Partial Class Form1
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripStatusLabel2})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 709)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 714)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(1217, 22)
         Me.StatusStrip1.TabIndex = 15
@@ -513,15 +513,17 @@ Partial Class Form1
         'ToolStripStatusLabel2
         '
         Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
-        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(120, 17)
+        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(121, 17)
         Me.ToolStripStatusLabel2.Text = "ToolStripStatusLabel2"
         '
         'GroupBox8
         '
         Me.GroupBox8.Controls.Add(Me.listSaida2)
+        Me.GroupBox8.Controls.Add(Me.lblExecf2)
+        Me.GroupBox8.Controls.Add(Me.lblParf2)
         Me.GroupBox8.Location = New System.Drawing.Point(252, 359)
         Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(230, 333)
+        Me.GroupBox8.Size = New System.Drawing.Size(230, 344)
         Me.GroupBox8.TabIndex = 17
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "Fila 2"
@@ -559,9 +561,11 @@ Partial Class Form1
         'GroupBox9
         '
         Me.GroupBox9.Controls.Add(Me.listSaida1)
+        Me.GroupBox9.Controls.Add(Me.lblExecf1)
+        Me.GroupBox9.Controls.Add(Me.lblParf1)
         Me.GroupBox9.Location = New System.Drawing.Point(12, 359)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(230, 333)
+        Me.GroupBox9.Size = New System.Drawing.Size(230, 344)
         Me.GroupBox9.TabIndex = 16
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "Fila 1"
@@ -599,9 +603,11 @@ Partial Class Form1
         'GroupBox10
         '
         Me.GroupBox10.Controls.Add(Me.listSaida4)
+        Me.GroupBox10.Controls.Add(Me.lblParf4)
+        Me.GroupBox10.Controls.Add(Me.lblExecf4)
         Me.GroupBox10.Location = New System.Drawing.Point(729, 359)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(230, 333)
+        Me.GroupBox10.Size = New System.Drawing.Size(230, 344)
         Me.GroupBox10.TabIndex = 19
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "Fila 4"
@@ -611,7 +617,7 @@ Partial Class Form1
         Me.listSaida4.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader13, Me.ColumnHeader14, Me.ColumnHeader15, Me.ColumnHeader16})
         Me.listSaida4.Location = New System.Drawing.Point(6, 14)
         Me.listSaida4.Name = "listSaida4"
-        Me.listSaida4.Size = New System.Drawing.Size(217, 313)
+        Me.listSaida4.Size = New System.Drawing.Size(217, 311)
         Me.listSaida4.TabIndex = 11
         Me.listSaida4.UseCompatibleStateImageBehavior = False
         Me.listSaida4.View = System.Windows.Forms.View.Details
@@ -639,9 +645,11 @@ Partial Class Form1
         'GroupBox11
         '
         Me.GroupBox11.Controls.Add(Me.listSaida3)
+        Me.GroupBox11.Controls.Add(Me.lblExecf3)
+        Me.GroupBox11.Controls.Add(Me.lblParf3)
         Me.GroupBox11.Location = New System.Drawing.Point(488, 359)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(230, 333)
+        Me.GroupBox11.Size = New System.Drawing.Size(230, 344)
         Me.GroupBox11.TabIndex = 18
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "Fila 3"
@@ -678,10 +686,12 @@ Partial Class Form1
         '
         'GroupBox12
         '
+        Me.GroupBox12.Controls.Add(Me.lblParf5)
         Me.GroupBox12.Controls.Add(Me.listSaida5)
+        Me.GroupBox12.Controls.Add(Me.lblExecf5)
         Me.GroupBox12.Location = New System.Drawing.Point(969, 359)
         Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Size = New System.Drawing.Size(230, 333)
+        Me.GroupBox12.Size = New System.Drawing.Size(230, 344)
         Me.GroupBox12.TabIndex = 20
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "Fila 5"
@@ -691,7 +701,7 @@ Partial Class Form1
         Me.listSaida5.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader21, Me.ColumnHeader22, Me.ColumnHeader23, Me.ColumnHeader24})
         Me.listSaida5.Location = New System.Drawing.Point(6, 14)
         Me.listSaida5.Name = "listSaida5"
-        Me.listSaida5.Size = New System.Drawing.Size(217, 313)
+        Me.listSaida5.Size = New System.Drawing.Size(217, 311)
         Me.listSaida5.TabIndex = 11
         Me.listSaida5.UseCompatibleStateImageBehavior = False
         Me.listSaida5.View = System.Windows.Forms.View.Details
@@ -801,7 +811,7 @@ Partial Class Form1
         '
         Me.lblExecf1.AutoSize = True
         Me.lblExecf1.ForeColor = System.Drawing.Color.DarkGreen
-        Me.lblExecf1.Location = New System.Drawing.Point(15, 695)
+        Me.lblExecf1.Location = New System.Drawing.Point(6, 330)
         Me.lblExecf1.Name = "lblExecf1"
         Me.lblExecf1.Size = New System.Drawing.Size(64, 13)
         Me.lblExecf1.TabIndex = 21
@@ -811,7 +821,7 @@ Partial Class Form1
         '
         Me.lblParf1.AutoSize = True
         Me.lblParf1.ForeColor = System.Drawing.Color.Red
-        Me.lblParf1.Location = New System.Drawing.Point(194, 695)
+        Me.lblParf1.Location = New System.Drawing.Point(185, 330)
         Me.lblParf1.Name = "lblParf1"
         Me.lblParf1.Size = New System.Drawing.Size(41, 13)
         Me.lblParf1.TabIndex = 23
@@ -821,7 +831,7 @@ Partial Class Form1
         '
         Me.lblExecf2.AutoSize = True
         Me.lblExecf2.ForeColor = System.Drawing.Color.DarkGreen
-        Me.lblExecf2.Location = New System.Drawing.Point(255, 695)
+        Me.lblExecf2.Location = New System.Drawing.Point(9, 330)
         Me.lblExecf2.Name = "lblExecf2"
         Me.lblExecf2.Size = New System.Drawing.Size(64, 13)
         Me.lblExecf2.TabIndex = 24
@@ -831,7 +841,7 @@ Partial Class Form1
         '
         Me.lblParf2.AutoSize = True
         Me.lblParf2.ForeColor = System.Drawing.Color.Red
-        Me.lblParf2.Location = New System.Drawing.Point(430, 695)
+        Me.lblParf2.Location = New System.Drawing.Point(184, 330)
         Me.lblParf2.Name = "lblParf2"
         Me.lblParf2.Size = New System.Drawing.Size(41, 13)
         Me.lblParf2.TabIndex = 25
@@ -841,7 +851,7 @@ Partial Class Form1
         '
         Me.lblExecf3.AutoSize = True
         Me.lblExecf3.ForeColor = System.Drawing.Color.DarkGreen
-        Me.lblExecf3.Location = New System.Drawing.Point(491, 695)
+        Me.lblExecf3.Location = New System.Drawing.Point(6, 330)
         Me.lblExecf3.Name = "lblExecf3"
         Me.lblExecf3.Size = New System.Drawing.Size(64, 13)
         Me.lblExecf3.TabIndex = 26
@@ -851,7 +861,7 @@ Partial Class Form1
         '
         Me.lblParf3.AutoSize = True
         Me.lblParf3.ForeColor = System.Drawing.Color.Red
-        Me.lblParf3.Location = New System.Drawing.Point(666, 695)
+        Me.lblParf3.Location = New System.Drawing.Point(181, 330)
         Me.lblParf3.Name = "lblParf3"
         Me.lblParf3.Size = New System.Drawing.Size(41, 13)
         Me.lblParf3.TabIndex = 27
@@ -861,7 +871,7 @@ Partial Class Form1
         '
         Me.lblExecf4.AutoSize = True
         Me.lblExecf4.ForeColor = System.Drawing.Color.DarkGreen
-        Me.lblExecf4.Location = New System.Drawing.Point(735, 695)
+        Me.lblExecf4.Location = New System.Drawing.Point(6, 330)
         Me.lblExecf4.Name = "lblExecf4"
         Me.lblExecf4.Size = New System.Drawing.Size(64, 13)
         Me.lblExecf4.TabIndex = 28
@@ -871,7 +881,7 @@ Partial Class Form1
         '
         Me.lblExecf5.AutoSize = True
         Me.lblExecf5.ForeColor = System.Drawing.Color.DarkGreen
-        Me.lblExecf5.Location = New System.Drawing.Point(972, 696)
+        Me.lblExecf5.Location = New System.Drawing.Point(6, 328)
         Me.lblExecf5.Name = "lblExecf5"
         Me.lblExecf5.Size = New System.Drawing.Size(64, 13)
         Me.lblExecf5.TabIndex = 29
@@ -881,7 +891,7 @@ Partial Class Form1
         '
         Me.lblParf4.AutoSize = True
         Me.lblParf4.ForeColor = System.Drawing.Color.Red
-        Me.lblParf4.Location = New System.Drawing.Point(913, 695)
+        Me.lblParf4.Location = New System.Drawing.Point(184, 330)
         Me.lblParf4.Name = "lblParf4"
         Me.lblParf4.Size = New System.Drawing.Size(41, 13)
         Me.lblParf4.TabIndex = 30
@@ -891,7 +901,7 @@ Partial Class Form1
         '
         Me.lblParf5.AutoSize = True
         Me.lblParf5.ForeColor = System.Drawing.Color.Red
-        Me.lblParf5.Location = New System.Drawing.Point(1153, 695)
+        Me.lblParf5.Location = New System.Drawing.Point(183, 328)
         Me.lblParf5.Name = "lblParf5"
         Me.lblParf5.Size = New System.Drawing.Size(41, 13)
         Me.lblParf5.TabIndex = 31
@@ -901,17 +911,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1217, 731)
-        Me.Controls.Add(Me.lblParf5)
-        Me.Controls.Add(Me.lblParf4)
-        Me.Controls.Add(Me.lblExecf5)
-        Me.Controls.Add(Me.lblExecf4)
-        Me.Controls.Add(Me.lblParf3)
-        Me.Controls.Add(Me.lblExecf3)
-        Me.Controls.Add(Me.lblParf2)
-        Me.Controls.Add(Me.lblExecf2)
-        Me.Controls.Add(Me.lblParf1)
-        Me.Controls.Add(Me.lblExecf1)
+        Me.ClientSize = New System.Drawing.Size(1217, 736)
         Me.Controls.Add(Me.GroupBox14)
         Me.Controls.Add(Me.GroupBox12)
         Me.Controls.Add(Me.GroupBox10)
@@ -944,10 +944,15 @@ Partial Class Form1
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         Me.GroupBox8.ResumeLayout(False)
+        Me.GroupBox8.PerformLayout()
         Me.GroupBox9.ResumeLayout(False)
+        Me.GroupBox9.PerformLayout()
         Me.GroupBox10.ResumeLayout(False)
+        Me.GroupBox10.PerformLayout()
         Me.GroupBox11.ResumeLayout(False)
+        Me.GroupBox11.PerformLayout()
         Me.GroupBox12.ResumeLayout(False)
+        Me.GroupBox12.PerformLayout()
         Me.GroupBox14.ResumeLayout(False)
         Me.GroupBox14.PerformLayout()
         Me.ResumeLayout(False)

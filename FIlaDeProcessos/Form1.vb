@@ -75,6 +75,16 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ToolStripStatusLabel2.Text = "Bem vindo ao simulador de processo ProcesSIM"
+        lblExecf1.Visible = False
+        lblExecf2.Visible = False
+        lblExecf3.Visible = False
+        lblExecf4.Visible = False
+        lblExecf5.Visible = False
+        lblParf1.Visible = False
+        lblParf2.Visible = False
+        lblParf3.Visible = False
+        lblParf4.Visible = False
+        lblParf5.Visible = False
     End Sub
 
     Public Sub distribuir()
@@ -132,39 +142,76 @@ Public Class Form1
     End Sub
 
     Private Async Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+
+        lblParf1.Visible = True
+        lblParf2.Visible = True
+        lblParf3.Visible = True
+        lblParf4.Visible = True
+        lblParf5.Visible = True
+
         If (chkAutoAll.Checked = True) Then
 
             Do While Fila1.Count > 0 Or Fila2.Count > 0 Or Fila3.Count > 0 Or Fila4.Count > 0 Or Fila5.Count > 0
                 Select Case maiorProcesso()
                     Case 1
                         If Fila1.Count > 0 Then
+                            lblParf1.Visible = False
+                            lblExecf1.Visible = True
                             PrimeiraFila.primeiro(listSaida1, Fila1, 1, 1)
                             Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
+                            lblParf1.Visible = True
+                            lblExecf1.Visible = False
                         End If
                     Case 2
                         If Fila2.Count > 0 Then
+                            lblParf2.Visible = False
+                            lblExecf2.Visible = True
                             PrimeiraFila.primeiro(listSaida2, Fila2, 4, 2)
                             Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
+                            lblParf2.Visible = True
+                            lblExecf2.Visible = False
                         End If
                     Case 3
                         If Fila3.Count > 0 Then
+                            lblParf3.Visible = False
+                            lblExecf3.Visible = True
                             PrimeiraFila.primeiro(listSaida3, Fila3, 7, 3)
                             Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
+                            lblParf3.Visible = True
+                            lblExecf3.Visible = False
                         End If
                     Case 4
                         If Fila4.Count > 0 Then
+                            lblParf4.Visible = False
+                            lblExecf4.Visible = True
                             PrimeiraFila.primeiro(listSaida4, Fila4, 10, 4)
                             Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
+                            lblParf4.Visible = True
+                            lblExecf4.Visible = False
                         End If
                     Case 5
                         If Fila5.Count > 0 Then
+                            lblParf5.Visible = False
+                            lblExecf5.Visible = True
                             PrimeiraFila.primeiro(listSaida5, Fila5, 15, 5)
                             Await Task.Delay(atraso()) 'atrasa o programa de acordo com valor selecionado
+                            lblParf5.Visible = True
+                            lblExecf5.Visible = False
                         End If
                 End Select
             Loop
-            ' chkAutoAll.Checked = False
+            chkAutoAll.Checked = False
             ToolStripStatusLabel2.Text = "Todos os processos foram finalizados" 'tchau :)
+            lblExecf1.Visible = False
+            lblExecf2.Visible = False
+            lblExecf3.Visible = False
+            lblExecf4.Visible = False
+            lblExecf5.Visible = False
+            lblParf1.Visible = False
+            lblParf2.Visible = False
+            lblParf3.Visible = False
+            lblParf4.Visible = False
+            lblParf5.Visible = False
         End If
 
         If (chkAutoAll.Checked = False) Then
