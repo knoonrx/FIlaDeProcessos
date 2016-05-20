@@ -247,34 +247,34 @@ Public Class Form1
 
     Public Function maiorProcesso() As Integer
 
-        Dim listTemporaria As New List(Of Tempo)() 'crio uma lista de processos temporária 
+        Dim filaTemporaria As New List(Of Tempo)() 'crio uma lista de processos temporária 
 
         'começo a enfileirar pelo primeiro processo da fila 5 até a fila 1 ou seja, da fila de maior quantum até a fila de menor.
-        'Desse modo vai processar sempre os processo com maior Tempo primeiro, quando houverem dois processos em filas diferentes com prioridades igueis
+        'Desse modo vai processar sempre os processo com maior Tempo primeiro, quando houver dois processos em filas diferentes com prioridades igueais(empate)
         'criando dessa forma o critério de desempate.
         If Fila5.Count > 0 Then
             Dim process = (From currentProcess In Fila5 Order By currentProcess.prioridade Descending).FirstOrDefault
-            listTemporaria.Add(New Tempo(5, process.prioridade)) 'adiciono o primeiro na lista temporária com o Número da Fila e o valor de sua prioridade (obj da class Tempo) ...
+            filaTemporaria.Add(New Tempo(5, process.prioridade)) 'adiciono o primeiro na lista temporária com o Número da Fila e o valor de sua prioridade (obj da class Tempo) ...
         End If
         If Fila4.Count > 0 Then
             Dim process = (From currentProcess In Fila4 Order By currentProcess.prioridade Descending).FirstOrDefault
-            listTemporaria.Add(New Tempo(4, process.prioridade))
+            filaTemporaria.Add(New Tempo(4, process.prioridade))
         End If
         If Fila3.Count > 0 Then
             Dim process = (From currentProcess In Fila3 Order By currentProcess.prioridade Descending).FirstOrDefault
-            listTemporaria.Add(New Tempo(3, process.prioridade))
+            filaTemporaria.Add(New Tempo(3, process.prioridade))
         End If
         If Fila2.Count > 0 Then
             Dim process = (From currentProcess In Fila2 Order By currentProcess.prioridade Descending).FirstOrDefault
-            listTemporaria.Add(New Tempo(2, process.prioridade))
+            filaTemporaria.Add(New Tempo(2, process.prioridade))
         End If
         If Fila1.Count > 0 Then
             Dim process = (From currentProcess In Fila1 Order By currentProcess.prioridade Descending).FirstOrDefault
-            listTemporaria.Add(New Tempo(1, process.prioridade))
+            filaTemporaria.Add(New Tempo(1, process.prioridade))
         End If
 
         If Fila1.Count > 0 Or Fila2.Count > 0 Or Fila3.Count > 0 Or Fila4.Count > 0 Or Fila5.Count > 0 Then 'Verifique se pelo menos uma das filas ainda não está vazia
-            Dim ultima = From item In listTemporaria Order By item.prioridade Descending 'se não estão vazias eu ordeno a lista temporária por prioridade de forma Descendente... Do maior para o menor.
+            Dim ultima = From item In filaTemporaria Order By item.prioridade Descending 'se não estão vazias eu ordeno a lista temporária por prioridade de forma Descendente... Do maior para o menor.
             Return ultima.FirstOrDefault().list 'e finalmente retorno o numero da fila que deverá ser processada
         Else
             Return 0 'se todas as filas estiverem vazias não faça nada.

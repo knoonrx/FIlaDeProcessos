@@ -1,6 +1,10 @@
 ﻿Public Class PrimeiraFila
 
     Public Shared Sub primeiro(listaExibicao As ListView, fila As List(Of Processo), quantum As Integer, numerador As Integer)
+        'listaexibição é o listview
+        'fila é a fila passada por parametro
+        'quantum é o quantum da fila 
+        'numerador é o numero que identifica a fila.
 
         Dim process = (From currentProcess In fila Order By currentProcess.prioridade Descending).FirstOrDefault 'pego o processo de maior prioridade :)
 
@@ -11,7 +15,7 @@
         Dim destino As String = ""
         Dim atual As String = ""
 
-        Select Case numerador
+        Select Case numerador 'select para fila posterior
             Case 1
                 filaPosterior = Fila2
                 listaEntrada = Form1.listSaida2
@@ -42,7 +46,7 @@
                 listaEntrada = Nothing
         End Select
 
-        Select Case numerador
+        Select Case numerador 'select para fila anterior
             Case 2
                 filaAnterior = Fila1
                 listaSaida = Form1.listSaida1
